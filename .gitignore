@@ -1,0 +1,8 @@
+/target
+src/main_marche_po.txt
+src/tmp.main.txt
+src/old_main.txt
+.vscode/settings.json
+.vscode/launch.json
+idea.md
+.icarukTime.json
