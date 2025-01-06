@@ -86,8 +86,6 @@ pub fn rendu_de_monnaie(a_rendre : Euro, posseder : &Vec<Monnaie>) -> Result<Vec
     let mut depenser = vec![0; posseder.len()];
     let mut meilleur_depenser = vec![0; posseder.len()];
 
-    println!("posseder_filtrer : {:?}", posseder_filtrer);
-
     let mut meilleur_qte_rendu = total_qte_caisse + 1;
     let mut qte_rendu = 0;
     
@@ -129,10 +127,12 @@ fn main()
 
     assert!(print_rendu_de_monnaie(200, vec![10.euro_x(1), 1.euro_x(5), 2.euro_x(5)]).is_err());
 
-    // Ce test :)
+    assert!(print_rendu_de_monnaie(50, vec![0.euro_x(50)]).is_err());
+    assert!(print_rendu_de_monnaie(50, vec![1.euro_x(500), (-5).euro_x(50)]).is_err());
+
+    assert!(print_rendu_de_monnaie(1_000_000_000_001, vec![1.euro_x(1_000_000_000_000)]).is_err());
+
     assert_eq!(print_rendu_de_monnaie(28, vec![20.euro_x(1), 1.euro_x(10), 14.euro_x(5)]).ok().unwrap(), [Monnaie{ valeur: 14, quantite: 2 }]);
 
     assert!(print_rendu_de_monnaie(6249 , vec![186.euro_big_qte(), 419.euro_big_qte(), 83.euro_big_qte(), 408.euro_big_qte()]).is_ok());
-
-    println!("Hello, world!");
 }
